@@ -13,10 +13,10 @@ $(SNAME): $(OBJ)
 	ranlib $(SNAME)
 
 $(DNAME): $(OBJ)
-	$(CC) -ggdb -shared -Wl,-soname,libdtfwrap.so -o libdtfwrap.so *.o
-#	$(CC) -ggdb -shared -Wl,-soname,libdtfwrap.so.1 -o libdtfwrap.so.1.0 *.o
-#	ln -sf ./libdtfwrap.so.1.0 ./libdtfwrap.so.1
-#	ln -sf ./libdtfwrap.so.1.0 ./libdtfwrap.so
+	$(CC) -ggdb -shared -Wl,-soname,$(DNAME) -o $(DNAME) *.o
+#	$(CC) -ggdb -shared -Wl,-soname,$(DNAME).1 -o $(DNAME).1.0 *.o
+#	ln -sf ./$(DNAME).1.0 ./$(DNAME).1
+#	ln -sf ./$(DNAME).1.0 ./$(DNAME)
 
 %.o: %.c
 	$(CC) -fPIC -c $< $(CFLAGS)
