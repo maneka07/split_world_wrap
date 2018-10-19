@@ -55,7 +55,7 @@ static int split_comm(int argc, char**argv)
 		char *s = getenv("DTF_COMP");
 		if(s != 0){
 			color = atoi(s);
-			printf("I am component %d\n", color);
+			//printf("I am component %d\n", color);
 		}
 	} 
 	
