@@ -1,0 +1,47 @@
+-------------------------ABOUT---------------------------------------
+SplitWorldWrap allows MPI programs that were developed independently and
+make use of the MPI_COMM_WORLD to be launched in MPMD mode without having 
+to modify them.
+
+The wrapper implicitly splits the global MPI_COMM_WORLD into local 
+sub-worlds for each application. 
+
+If the application tries to perform an action on MPI_COMM_WORLD 
+communicator, the wrapper implicitly replaces it with the 
+sub-communicator. 
+
+This wrapper is originally intented to be used by libraries that connect 
+independend programs (components) into one execution framework for some 
+purpose.
+
+-------------------------COMPILE AND LINK-----------------------------
+Set CC and CFLAGS in the Makefile before compilation then call make.
+
+SplitWorldWrap can be either statically linked with the application 
+or, alternatively, LD_PRELOAD can be used to dynamically preload the 
+library when the applications are launched:
+
+export LD_PRELOAD=/path/to/lib/libsplitworld.so
+mpiexec -n .... app1.exe : -n .... app2.exe : -n ... 
+
+-------------------------RUN----------------------------------------
+If the MPI implementation supports MPI_APPNUM (this should be true if the 
+implementation supports MPMD launch mode) then run the applications 
+as you would do it normally:
+
+	mpiexec -n $NPROC1 app1.exe : -n $NPROC2 app2.exe
+
+If MPI_APPNUM is not set automatically then set MPMD_COMP environment 
+variable to a uniqe value for each executable:
+
+	mpiexec -n $NPROC1 -x MPMD_COMP=0 app1.exe : \
+			-n $NPROC2 -x MPMD_COMP=1 app2.exe
+
+The wrapper only intercepts MPI calls that involve communicators, i.e. any
+call that has an MPI_Comm type argument. 
+
+To disable intercepting of MPI calls use MPI_Pcontrol():
+
+MPI_Pcontrol(0); //disable wrapper
+/*...MPI code where calls are not intercepted by the wrapper...*/
+MPI_Pcontrol(1); //enable wrapper again

@@ -52,7 +52,7 @@ static int split_comm(int argc, char**argv)
 	if(flag){
 		color = *(int*)val; 
 	} else {
-		char *s = getenv("DTF_COMP");
+		char *s = getenv("MPMD_COMP");
 		if(s != 0){
 			color = atoi(s);
 			//printf("I am component %d\n", color);
@@ -66,7 +66,7 @@ static int split_comm(int argc, char**argv)
 	PMPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	err = PMPI_Comm_split(MPI_COMM_WORLD, color, rank, &MY_COMM_WORLD);
 	if(err != MPI_SUCCESS)
-		printf("Error: error spliting global communicator for individual components\n");
+		printf("Error: error splitting global communicator for individual components\n");
 		
 	if(MY_COMM_WORLD == MPI_COMM_NULL)
 		MY_COMM_WORLD = MPI_COMM_WORLD;
