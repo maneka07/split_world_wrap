@@ -1,14 +1,14 @@
 -------------------------ABOUT---------------------------------------
-SplitWorldWrap allows MPI programs that were developed independently and
-make use of the MPI_COMM_WORLD to be launched in MPMD mode without having 
-to modify them.
+The wrapper library is used in MPMD execution mode and emulates the 
+execution as if the programs were launched with a separate mpiexec and, 
+hence, each has its own MPI_COMM_WORLD.
 
 The wrapper implicitly splits the global MPI_COMM_WORLD into local 
 sub-worlds for each application. 
 
 If the application tries to perform an action on MPI_COMM_WORLD 
-communicator, the wrapper implicitly replaces it with the 
-sub-communicator. 
+communicator, the wrapper implicitly replaces it with the respective
+sub-world communicator. 
 
 This wrapper is originally intented to be used by libraries that connect 
 independend programs (components) into one execution framework for some 
