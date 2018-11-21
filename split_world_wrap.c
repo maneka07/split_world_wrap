@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+//#define K_COMPUTER //enable for compilation on K computer
+
 #ifndef _EXTERN_C_
 #ifdef __cplusplus
 #define _EXTERN_C_ extern "C"
@@ -427,17 +429,6 @@ _EXTERN_C_ int MPI_Comm_create(MPI_Comm comm, MPI_Group group, MPI_Comm *newcomm
     return _wrap_py_return_val;
 }
 
-/* ================== C Wrappers for MPI_Comm_create_group ================== */
-_EXTERN_C_ int PMPI_Comm_create_group(MPI_Comm comm, MPI_Group group, int tag, MPI_Comm *newcomm);
-_EXTERN_C_ int MPI_Comm_create_group(MPI_Comm comm, MPI_Group group, int tag, MPI_Comm *newcomm) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Comm_create_group(comm, group, tag, newcomm);
-    return _wrap_py_return_val;
-}
-
 /* ================== C Wrappers for MPI_Comm_delete_attr ================== */
 _EXTERN_C_ int PMPI_Comm_delete_attr(MPI_Comm comm, int comm_keyval);
 _EXTERN_C_ int MPI_Comm_delete_attr(MPI_Comm comm, int comm_keyval) { 
@@ -471,17 +462,6 @@ _EXTERN_C_ int MPI_Comm_dup(MPI_Comm comm, MPI_Comm *newcomm) {
     return _wrap_py_return_val;
 }
 
-/* ================== C Wrappers for MPI_Comm_dup_with_info ================== */
-_EXTERN_C_ int PMPI_Comm_dup_with_info(MPI_Comm comm, MPI_Info info, MPI_Comm *newcomm);
-_EXTERN_C_ int MPI_Comm_dup_with_info(MPI_Comm comm, MPI_Info info, MPI_Comm *newcomm) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Comm_dup_with_info(comm, info, newcomm);
-    return _wrap_py_return_val;
-}
-
 /* ================== C Wrappers for MPI_Comm_get_attr ================== */
 _EXTERN_C_ int PMPI_Comm_get_attr(MPI_Comm comm, int comm_keyval, void *attribute_val, int *flag);
 _EXTERN_C_ int MPI_Comm_get_attr(MPI_Comm comm, int comm_keyval, void *attribute_val, int *flag) { 
@@ -504,17 +484,6 @@ _EXTERN_C_ int MPI_Comm_get_errhandler(MPI_Comm comm, MPI_Errhandler *erhandler)
     return _wrap_py_return_val;
 }
 
-/* ================== C Wrappers for MPI_Comm_get_info ================== */
-_EXTERN_C_ int PMPI_Comm_get_info(MPI_Comm comm, MPI_Info *info_used);
-_EXTERN_C_ int MPI_Comm_get_info(MPI_Comm comm, MPI_Info *info_used) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Comm_get_info(comm, info_used);
-    return _wrap_py_return_val;
-}
-
 /* ================== C Wrappers for MPI_Comm_get_name ================== */
 _EXTERN_C_ int PMPI_Comm_get_name(MPI_Comm comm, char *comm_name, int *resultlen);
 _EXTERN_C_ int MPI_Comm_get_name(MPI_Comm comm, char *comm_name, int *resultlen) { 
@@ -534,17 +503,6 @@ _EXTERN_C_ int MPI_Comm_group(MPI_Comm comm, MPI_Group *group) {
   if(plevel && (comm == MPI_COMM_WORLD))
 	comm = MY_COMM_WORLD;
   _wrap_py_return_val = PMPI_Comm_group(comm, group);
-    return _wrap_py_return_val;
-}
-
-/* ================== C Wrappers for MPI_Comm_idup ================== */
-_EXTERN_C_ int PMPI_Comm_idup(MPI_Comm comm, MPI_Comm *newcomm, MPI_Request *request);
-_EXTERN_C_ int MPI_Comm_idup(MPI_Comm comm, MPI_Comm *newcomm, MPI_Request *request) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Comm_idup(comm, newcomm, request);
     return _wrap_py_return_val;
 }
 
@@ -603,17 +561,6 @@ _EXTERN_C_ int MPI_Comm_set_errhandler(MPI_Comm comm, MPI_Errhandler errhandler)
     return _wrap_py_return_val;
 }
 
-/* ================== C Wrappers for MPI_Comm_set_info ================== */
-_EXTERN_C_ int PMPI_Comm_set_info(MPI_Comm comm, MPI_Info info);
-_EXTERN_C_ int MPI_Comm_set_info(MPI_Comm comm, MPI_Info info) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Comm_set_info(comm, info);
-    return _wrap_py_return_val;
-}
-
 /* ================== C Wrappers for MPI_Comm_set_name ================== */
 _EXTERN_C_ int PMPI_Comm_set_name(MPI_Comm comm, MPI_CONST char *comm_name);
 _EXTERN_C_ int MPI_Comm_set_name(MPI_Comm comm, MPI_CONST char *comm_name) { 
@@ -633,17 +580,6 @@ _EXTERN_C_ int MPI_Comm_split(MPI_Comm comm, int color, int key, MPI_Comm *newco
   if(plevel && (comm == MPI_COMM_WORLD))
 	comm = MY_COMM_WORLD;
   _wrap_py_return_val = PMPI_Comm_split(comm, color, key, newcomm);
-    return _wrap_py_return_val;
-}
-
-/* ================== C Wrappers for MPI_Comm_split_type ================== */
-_EXTERN_C_ int PMPI_Comm_split_type(MPI_Comm comm, int split_type, int key, MPI_Info info, MPI_Comm *newcomm);
-_EXTERN_C_ int MPI_Comm_split_type(MPI_Comm comm, int split_type, int key, MPI_Info info, MPI_Comm *newcomm) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Comm_split_type(comm, split_type, key, info, newcomm);
     return _wrap_py_return_val;
 }
 
@@ -955,61 +891,6 @@ _EXTERN_C_ int MPI_Improbe(int source, int tag, MPI_Comm comm, int *flag, MPI_Me
     return _wrap_py_return_val;
 }
 
-/* ================== C Wrappers for MPI_Ineighbor_allgather ================== */
-_EXTERN_C_ int PMPI_Ineighbor_allgather(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request);
-_EXTERN_C_ int MPI_Ineighbor_allgather(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Ineighbor_allgather(sendbuf, sendcount, sendtype, recvbuf, recvcount, recvtype, comm, request);
-    return _wrap_py_return_val;
-}
-
-/* ================== C Wrappers for MPI_Ineighbor_allgatherv ================== */
-_EXTERN_C_ int PMPI_Ineighbor_allgatherv(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int displs[], MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request);
-_EXTERN_C_ int MPI_Ineighbor_allgatherv(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int displs[], MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Ineighbor_allgatherv(sendbuf, sendcount, sendtype, recvbuf, recvcounts, displs, recvtype, comm, request);
-    return _wrap_py_return_val;
-}
-
-/* ================== C Wrappers for MPI_Ineighbor_alltoall ================== */
-_EXTERN_C_ int PMPI_Ineighbor_alltoall(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request);
-_EXTERN_C_ int MPI_Ineighbor_alltoall(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Ineighbor_alltoall(sendbuf, sendcount, sendtype, recvbuf, recvcount, recvtype, comm, request);
-    return _wrap_py_return_val;
-}
-
-/* ================== C Wrappers for MPI_Ineighbor_alltoallv ================== */
-_EXTERN_C_ int PMPI_Ineighbor_alltoallv(MPI_CONST void *sendbuf, MPI_CONST int sendcounts[], MPI_CONST int sdispls[], MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int rdispls[], MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request);
-_EXTERN_C_ int MPI_Ineighbor_alltoallv(MPI_CONST void *sendbuf, MPI_CONST int sendcounts[], MPI_CONST int sdispls[], MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int rdispls[], MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Ineighbor_alltoallv(sendbuf, sendcounts, sdispls, sendtype, recvbuf, recvcounts, rdispls, recvtype, comm, request);
-    return _wrap_py_return_val;
-}
-
-/* ================== C Wrappers for MPI_Ineighbor_alltoallw ================== */
-_EXTERN_C_ int PMPI_Ineighbor_alltoallw(MPI_CONST void *sendbuf, MPI_CONST int sendcounts[], MPI_CONST MPI_Aint sdispls[], MPI_CONST MPI_Datatype sendtypes[], void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST MPI_Aint rdispls[], MPI_CONST MPI_Datatype recvtypes[], MPI_Comm comm, MPI_Request *request);
-_EXTERN_C_ int MPI_Ineighbor_alltoallw(MPI_CONST void *sendbuf, MPI_CONST int sendcounts[], MPI_CONST MPI_Aint sdispls[], MPI_CONST MPI_Datatype sendtypes[], void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST MPI_Aint rdispls[], MPI_CONST MPI_Datatype recvtypes[], MPI_Comm comm, MPI_Request *request) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Ineighbor_alltoallw(sendbuf, sendcounts, sdispls, sendtypes, recvbuf, recvcounts, rdispls, recvtypes, comm, request);
-    return _wrap_py_return_val;
-}
-
 /* ================== C Wrappers for MPI_Intercomm_create ================== */
 _EXTERN_C_ int PMPI_Intercomm_create(MPI_Comm local_comm, int local_leader, MPI_Comm bridge_comm, int remote_leader, int tag, MPI_Comm *newintercomm);
 _EXTERN_C_ int MPI_Intercomm_create(MPI_Comm local_comm, int local_leader, MPI_Comm bridge_comm, int remote_leader, int tag, MPI_Comm *newintercomm) { 
@@ -1164,61 +1045,6 @@ _EXTERN_C_ int MPI_Mprobe(int source, int tag, MPI_Comm comm, MPI_Message *messa
   if(plevel && (comm == MPI_COMM_WORLD))
 	comm = MY_COMM_WORLD;
   _wrap_py_return_val = PMPI_Mprobe(source, tag, comm, message, status);
-    return _wrap_py_return_val;
-}
-
-/* ================== C Wrappers for MPI_Neighbor_allgather ================== */
-_EXTERN_C_ int PMPI_Neighbor_allgather(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm);
-_EXTERN_C_ int MPI_Neighbor_allgather(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Neighbor_allgather(sendbuf, sendcount, sendtype, recvbuf, recvcount, recvtype, comm);
-    return _wrap_py_return_val;
-}
-
-/* ================== C Wrappers for MPI_Neighbor_allgatherv ================== */
-_EXTERN_C_ int PMPI_Neighbor_allgatherv(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int displs[], MPI_Datatype recvtype, MPI_Comm comm);
-_EXTERN_C_ int MPI_Neighbor_allgatherv(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int displs[], MPI_Datatype recvtype, MPI_Comm comm) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Neighbor_allgatherv(sendbuf, sendcount, sendtype, recvbuf, recvcounts, displs, recvtype, comm);
-    return _wrap_py_return_val;
-}
-
-/* ================== C Wrappers for MPI_Neighbor_alltoall ================== */
-_EXTERN_C_ int PMPI_Neighbor_alltoall(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm);
-_EXTERN_C_ int MPI_Neighbor_alltoall(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Neighbor_alltoall(sendbuf, sendcount, sendtype, recvbuf, recvcount, recvtype, comm);
-    return _wrap_py_return_val;
-}
-
-/* ================== C Wrappers for MPI_Neighbor_alltoallv ================== */
-_EXTERN_C_ int PMPI_Neighbor_alltoallv(MPI_CONST void *sendbuf, MPI_CONST int sendcounts[], MPI_CONST int sdispls[], MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int rdispls[], MPI_Datatype recvtype, MPI_Comm comm);
-_EXTERN_C_ int MPI_Neighbor_alltoallv(MPI_CONST void *sendbuf, MPI_CONST int sendcounts[], MPI_CONST int sdispls[], MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int rdispls[], MPI_Datatype recvtype, MPI_Comm comm) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Neighbor_alltoallv(sendbuf, sendcounts, sdispls, sendtype, recvbuf, recvcounts, rdispls, recvtype, comm);
-    return _wrap_py_return_val;
-}
-
-/* ================== C Wrappers for MPI_Neighbor_alltoallw ================== */
-_EXTERN_C_ int PMPI_Neighbor_alltoallw(MPI_CONST void *sendbuf, MPI_CONST int sendcounts[], MPI_CONST MPI_Aint sdispls[], MPI_CONST MPI_Datatype sendtypes[], void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST MPI_Aint rdispls[], MPI_CONST MPI_Datatype recvtypes[], MPI_Comm comm);
-_EXTERN_C_ int MPI_Neighbor_alltoallw(MPI_CONST void *sendbuf, MPI_CONST int sendcounts[], MPI_CONST MPI_Aint sdispls[], MPI_CONST MPI_Datatype sendtypes[], void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST MPI_Aint rdispls[], MPI_CONST MPI_Datatype recvtypes[], MPI_Comm comm) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Neighbor_alltoallw(sendbuf, sendcounts, sdispls, sendtypes, recvbuf, recvcounts, rdispls, recvtypes, comm);
     return _wrap_py_return_val;
 }
 
@@ -1442,6 +1268,20 @@ _EXTERN_C_ int MPI_Unpack(MPI_CONST void *inbuf, int insize, int *position, void
     return _wrap_py_return_val;
 }
 
+/* ================== C Wrappers for MPI_Win_create ================== */
+_EXTERN_C_ int PMPI_Win_create(void *base, MPI_Aint size, int disp_unit, MPI_Info info, MPI_Comm comm, MPI_Win *win);
+_EXTERN_C_ int MPI_Win_create(void *base, MPI_Aint size, int disp_unit, MPI_Info info, MPI_Comm comm, MPI_Win *win) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Win_create(base, size, disp_unit, info, comm, win);
+    return _wrap_py_return_val;
+}
+
+
+#ifndef K_COMPUTER
+
 /* ================== C Wrappers for MPI_Win_allocate ================== */
 _EXTERN_C_ int PMPI_Win_allocate(MPI_Aint size, int disp_unit, MPI_Info info, MPI_Comm comm, void *baseptr, MPI_Win *win);
 _EXTERN_C_ int MPI_Win_allocate(MPI_Aint size, int disp_unit, MPI_Info info, MPI_Comm comm, void *baseptr, MPI_Win *win) { 
@@ -1464,17 +1304,6 @@ _EXTERN_C_ int MPI_Win_allocate_shared(MPI_Aint size, int disp_unit, MPI_Info in
     return _wrap_py_return_val;
 }
 
-/* ================== C Wrappers for MPI_Win_create ================== */
-_EXTERN_C_ int PMPI_Win_create(void *base, MPI_Aint size, int disp_unit, MPI_Info info, MPI_Comm comm, MPI_Win *win);
-_EXTERN_C_ int MPI_Win_create(void *base, MPI_Aint size, int disp_unit, MPI_Info info, MPI_Comm comm, MPI_Win *win) { 
-    int _wrap_py_return_val = 0;
- 
-  if(plevel && (comm == MPI_COMM_WORLD))
-	comm = MY_COMM_WORLD;
-  _wrap_py_return_val = PMPI_Win_create(base, size, disp_unit, info, comm, win);
-    return _wrap_py_return_val;
-}
-
 /* ================== C Wrappers for MPI_Win_create_dynamic ================== */
 _EXTERN_C_ int PMPI_Win_create_dynamic(MPI_Info info, MPI_Comm comm, MPI_Win *win);
 _EXTERN_C_ int MPI_Win_create_dynamic(MPI_Info info, MPI_Comm comm, MPI_Win *win) { 
@@ -1486,3 +1315,180 @@ _EXTERN_C_ int MPI_Win_create_dynamic(MPI_Info info, MPI_Comm comm, MPI_Win *win
     return _wrap_py_return_val;
 }
 
+/* ================== C Wrappers for MPI_Comm_create_group ================== */
+_EXTERN_C_ int PMPI_Comm_create_group(MPI_Comm comm, MPI_Group group, int tag, MPI_Comm *newcomm);
+_EXTERN_C_ int MPI_Comm_create_group(MPI_Comm comm, MPI_Group group, int tag, MPI_Comm *newcomm) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Comm_create_group(comm, group, tag, newcomm);
+    return _wrap_py_return_val;
+}
+
+/* ================== C Wrappers for MPI_Comm_dup_with_info ================== */
+_EXTERN_C_ int PMPI_Comm_dup_with_info(MPI_Comm comm, MPI_Info info, MPI_Comm *newcomm);
+_EXTERN_C_ int MPI_Comm_dup_with_info(MPI_Comm comm, MPI_Info info, MPI_Comm *newcomm) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Comm_dup_with_info(comm, info, newcomm);
+    return _wrap_py_return_val;
+}
+
+/* ================== C Wrappers for MPI_Comm_get_info ================== */
+_EXTERN_C_ int PMPI_Comm_get_info(MPI_Comm comm, MPI_Info *info_used);
+_EXTERN_C_ int MPI_Comm_get_info(MPI_Comm comm, MPI_Info *info_used) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Comm_get_info(comm, info_used);
+    return _wrap_py_return_val;
+}
+
+/* ================== C Wrappers for MPI_Comm_idup ================== */
+_EXTERN_C_ int PMPI_Comm_idup(MPI_Comm comm, MPI_Comm *newcomm, MPI_Request *request);
+_EXTERN_C_ int MPI_Comm_idup(MPI_Comm comm, MPI_Comm *newcomm, MPI_Request *request) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Comm_idup(comm, newcomm, request);
+    return _wrap_py_return_val;
+}
+
+/* ================== C Wrappers for MPI_Comm_set_info ================== */
+_EXTERN_C_ int PMPI_Comm_set_info(MPI_Comm comm, MPI_Info info);
+_EXTERN_C_ int MPI_Comm_set_info(MPI_Comm comm, MPI_Info info) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Comm_set_info(comm, info);
+    return _wrap_py_return_val;
+}
+
+/* ================== C Wrappers for MPI_Comm_split_type ================== */
+_EXTERN_C_ int PMPI_Comm_split_type(MPI_Comm comm, int split_type, int key, MPI_Info info, MPI_Comm *newcomm);
+_EXTERN_C_ int MPI_Comm_split_type(MPI_Comm comm, int split_type, int key, MPI_Info info, MPI_Comm *newcomm) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Comm_split_type(comm, split_type, key, info, newcomm);
+    return _wrap_py_return_val;
+}
+
+/* ================== C Wrappers for MPI_Neighbor_allgather ================== */
+_EXTERN_C_ int PMPI_Neighbor_allgather(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm);
+_EXTERN_C_ int MPI_Neighbor_allgather(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Neighbor_allgather(sendbuf, sendcount, sendtype, recvbuf, recvcount, recvtype, comm);
+    return _wrap_py_return_val;
+}
+
+/* ================== C Wrappers for MPI_Ineighbor_allgatherv ================== */
+_EXTERN_C_ int PMPI_Ineighbor_allgatherv(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int displs[], MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request);
+_EXTERN_C_ int MPI_Ineighbor_allgatherv(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int displs[], MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Ineighbor_allgatherv(sendbuf, sendcount, sendtype, recvbuf, recvcounts, displs, recvtype, comm, request);
+    return _wrap_py_return_val;
+}
+
+/* ================== C Wrappers for MPI_Ineighbor_allgather ================== */
+_EXTERN_C_ int PMPI_Ineighbor_allgather(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request);
+_EXTERN_C_ int MPI_Ineighbor_allgather(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Ineighbor_allgather(sendbuf, sendcount, sendtype, recvbuf, recvcount, recvtype, comm, request);
+    return _wrap_py_return_val;
+}
+
+/* ================== C Wrappers for MPI_Ineighbor_alltoall ================== */
+_EXTERN_C_ int PMPI_Ineighbor_alltoall(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request);
+_EXTERN_C_ int MPI_Ineighbor_alltoall(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Ineighbor_alltoall(sendbuf, sendcount, sendtype, recvbuf, recvcount, recvtype, comm, request);
+    return _wrap_py_return_val;
+}
+
+/* ================== C Wrappers for MPI_Ineighbor_alltoallv ================== */
+_EXTERN_C_ int PMPI_Ineighbor_alltoallv(MPI_CONST void *sendbuf, MPI_CONST int sendcounts[], MPI_CONST int sdispls[], MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int rdispls[], MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request);
+_EXTERN_C_ int MPI_Ineighbor_alltoallv(MPI_CONST void *sendbuf, MPI_CONST int sendcounts[], MPI_CONST int sdispls[], MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int rdispls[], MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Ineighbor_alltoallv(sendbuf, sendcounts, sdispls, sendtype, recvbuf, recvcounts, rdispls, recvtype, comm, request);
+    return _wrap_py_return_val;
+}
+
+/* ================== C Wrappers for MPI_Ineighbor_alltoallw ================== */
+_EXTERN_C_ int PMPI_Ineighbor_alltoallw(MPI_CONST void *sendbuf, MPI_CONST int sendcounts[], MPI_CONST MPI_Aint sdispls[], MPI_CONST MPI_Datatype sendtypes[], void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST MPI_Aint rdispls[], MPI_CONST MPI_Datatype recvtypes[], MPI_Comm comm, MPI_Request *request);
+_EXTERN_C_ int MPI_Ineighbor_alltoallw(MPI_CONST void *sendbuf, MPI_CONST int sendcounts[], MPI_CONST MPI_Aint sdispls[], MPI_CONST MPI_Datatype sendtypes[], void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST MPI_Aint rdispls[], MPI_CONST MPI_Datatype recvtypes[], MPI_Comm comm, MPI_Request *request) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Ineighbor_alltoallw(sendbuf, sendcounts, sdispls, sendtypes, recvbuf, recvcounts, rdispls, recvtypes, comm, request);
+    return _wrap_py_return_val;
+}
+
+/* ================== C Wrappers for MPI_Neighbor_allgatherv ================== */
+_EXTERN_C_ int PMPI_Neighbor_allgatherv(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int displs[], MPI_Datatype recvtype, MPI_Comm comm);
+_EXTERN_C_ int MPI_Neighbor_allgatherv(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int displs[], MPI_Datatype recvtype, MPI_Comm comm) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Neighbor_allgatherv(sendbuf, sendcount, sendtype, recvbuf, recvcounts, displs, recvtype, comm);
+    return _wrap_py_return_val;
+}
+
+/* ================== C Wrappers for MPI_Neighbor_alltoall ================== */
+_EXTERN_C_ int PMPI_Neighbor_alltoall(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm);
+_EXTERN_C_ int MPI_Neighbor_alltoall(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Neighbor_alltoall(sendbuf, sendcount, sendtype, recvbuf, recvcount, recvtype, comm);
+    return _wrap_py_return_val;
+}
+
+/* ================== C Wrappers for MPI_Neighbor_alltoallv ================== */
+_EXTERN_C_ int PMPI_Neighbor_alltoallv(MPI_CONST void *sendbuf, MPI_CONST int sendcounts[], MPI_CONST int sdispls[], MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int rdispls[], MPI_Datatype recvtype, MPI_Comm comm);
+_EXTERN_C_ int MPI_Neighbor_alltoallv(MPI_CONST void *sendbuf, MPI_CONST int sendcounts[], MPI_CONST int sdispls[], MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int rdispls[], MPI_Datatype recvtype, MPI_Comm comm) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Neighbor_alltoallv(sendbuf, sendcounts, sdispls, sendtype, recvbuf, recvcounts, rdispls, recvtype, comm);
+    return _wrap_py_return_val;
+}
+
+/* ================== C Wrappers for MPI_Neighbor_alltoallw ================== */
+_EXTERN_C_ int PMPI_Neighbor_alltoallw(MPI_CONST void *sendbuf, MPI_CONST int sendcounts[], MPI_CONST MPI_Aint sdispls[], MPI_CONST MPI_Datatype sendtypes[], void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST MPI_Aint rdispls[], MPI_CONST MPI_Datatype recvtypes[], MPI_Comm comm);
+_EXTERN_C_ int MPI_Neighbor_alltoallw(MPI_CONST void *sendbuf, MPI_CONST int sendcounts[], MPI_CONST MPI_Aint sdispls[], MPI_CONST MPI_Datatype sendtypes[], void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST MPI_Aint rdispls[], MPI_CONST MPI_Datatype recvtypes[], MPI_Comm comm) { 
+    int _wrap_py_return_val = 0;
+ 
+  if(plevel && (comm == MPI_COMM_WORLD))
+	comm = MY_COMM_WORLD;
+  _wrap_py_return_val = PMPI_Neighbor_alltoallw(sendbuf, sendcounts, sdispls, sendtypes, recvbuf, recvcounts, rdispls, recvtypes, comm);
+    return _wrap_py_return_val;
+}
+
+#endif
