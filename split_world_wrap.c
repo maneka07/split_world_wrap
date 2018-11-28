@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-//#define K_COMPUTER //enable for compilation on K computer
+#define K_COMPUTER //enable for compilation on K computer
 
 #ifndef _EXTERN_C_
 #ifdef __cplusplus
@@ -184,6 +184,7 @@ _EXTERN_C_ int MPI_Allgather(MPI_CONST void *sendbuf, int sendcount, MPI_Datatyp
     return _wrap_py_return_val;
 }
 
+
 /* ================== C Wrappers for MPI_Allgatherv ================== */
 _EXTERN_C_ int PMPI_Allgatherv(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int displs[], MPI_Datatype recvtype, MPI_Comm comm);
 _EXTERN_C_ int MPI_Allgatherv(MPI_CONST void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, MPI_CONST int recvcounts[], MPI_CONST int displs[], MPI_Datatype recvtype, MPI_Comm comm) { 
@@ -192,6 +193,7 @@ _EXTERN_C_ int MPI_Allgatherv(MPI_CONST void *sendbuf, int sendcount, MPI_Dataty
   if(plevel && (comm == MPI_COMM_WORLD))
 	comm = MY_COMM_WORLD;
   _wrap_py_return_val = PMPI_Allgatherv(sendbuf, sendcount, sendtype, recvbuf, recvcounts, displs, recvtype, comm);
+
     return _wrap_py_return_val;
 }
 
